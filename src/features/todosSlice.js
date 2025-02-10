@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// TODO: Normalise state
+
 //Add initial state to test!
-const initialState = {1: {id: 1, task: "Hello World"},
-                      2: {id: 2, task: "Does it work?"}};
+const initialState = [{id: 1, task: "Hello World"},
+                      {id: 2, task: "Does it work?"}];
 
 // Create slice for the whole todo app
 // No need to type "initialState: initialState,"
