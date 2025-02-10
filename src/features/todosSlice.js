@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//Add initial state to test!
+const initialState = {1: {id: 1, task: "Hello World"},
+                      2: {id: 2, task: "Does it work?"}};
+
 // Create slice for the whole todo app
-// TODO: Add initial state to test!
+// No need to type "initialState: initialState,"
 // TODO: Add more reducers
 const todosSlice = createSlice({
     name: 'todos',
-    initialState: {},
+    initialState,
     reducers: {
         addTodo: (state, action) => {
             state.push(action.payload);
