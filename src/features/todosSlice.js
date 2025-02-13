@@ -8,7 +8,7 @@ const initialState = todoAdapter.getInitialState();
 
 // Create slice for the whole todo app
 // No need to type "initialState: initialState" because the property name and variable name are the same (syntactic sugar)
-// TODO: Add more reducers
+// TODO: Add more reducers (toggleTodo, ...)
 const todosSlice = createSlice({
     name: 'todos',
     initialState,
@@ -21,10 +21,10 @@ const todosSlice = createSlice({
 /*
 Todo entry structure:
 {
-    id,     - a unique identifier (num)
-    task,   - the main text of the task, necessary to create it (string)
-    status, - shows whether the task is completed or not (boolean)
-    notes,  - another text field, a longer description of the task, empty by default (string)
+    id,        - a unique identifier (num)
+    task,      - the main text of the task, necessary to create it (string)
+    completed, - shows whether the task is completed or not (boolean)
+    notes,     - another text field, a longer description of the task, empty by default (string)
 }
 */
 
