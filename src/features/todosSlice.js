@@ -1,12 +1,11 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSelector } from 'reselect';
 
-// Normalise state using createEntityAdapter
+// Normalising state using createEntityAdapter
 const todoAdapter = createEntityAdapter();
-
-//Add initial state
 const initialState = todoAdapter.getInitialState();
 
-// Create slice for the whole todo app
+// A slice for the whole todo app
 // No need to type "initialState: initialState" because the property name and variable name are the same (syntactic sugar)
 // TODO: Add more reducers (toggleTodo, ...)
 const todosSlice = createSlice({
@@ -29,6 +28,17 @@ Todo entry structure:
 */
 
 // TODO: Consider 'soft deletions', i.e. adding a boolean 'deleted' field that's false by default
+
+// A factory function for a memoized selector for todos
+// The input reducer returns a stable reference (no change in state means no reference)
+// Gets an object of todos from state, converts it into an array, filters the array based on completion status
+export const makeSelectTodos = (completed) => createSelector(
+    state => state.todos.entities,
+    todos => {
+        const todosList = Object.values(todos);
+        return todosList.filter(todo => todo.completed === completed);
+    },
+)
 
 // Export actions
 export const { addTodo, deleteTodo } = todosSlice.actions;
