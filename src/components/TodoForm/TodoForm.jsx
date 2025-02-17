@@ -18,7 +18,7 @@ export function TodoForm() {
     }
 
     const handleTodoAddition = (todo, notes) => {
-        // Generate an id and create a todo object
+        // Generating an id and create a todo object
         const newTodo = {
             id: uuidv4(),
             task: todo,
@@ -26,14 +26,18 @@ export function TodoForm() {
             completed: false,
         }
 
-        // Add the object to the Redux state
+        // Adding the object to the Redux state
         dispatch(addTodo(newTodo));
+
+        // Tidying up the input fields
+        setTodoInput("");
+        setNotesInput("");
     }
 
-    // Use a closure to pass additonal parameters to handleUserInput
+    // Using a closure to pass additonal parameters to handleUserInput
     return <>
-        <TextField label="Todo" variant="outlined" onChange={e => handleUserInput(e, setTodoInput)}></TextField>
-        <TextField label="Add notes" variant="outlined" onChange={e => handleUserInput(e, setNotesInput)}></TextField>
+        <TextField label="Todo" variant="outlined" value={todoInput} onChange={e => handleUserInput(e, setTodoInput)}></TextField>
+        <TextField label="Add notes" variant="outlined" value={notesInput} onChange={e => handleUserInput(e, setNotesInput)}></TextField>
         <Button variant="contained" onClick={() => handleTodoAddition(todoInput, notesInput)}>Add Todo</Button>
     </>
 }
