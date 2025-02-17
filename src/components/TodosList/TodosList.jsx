@@ -1,6 +1,7 @@
-import { List, ListItem } from '@mui/material/';
-import { useSelector } from 'react-redux';
+import { Checkbox, List, ListItem } from '@mui/material/';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeSelectTodos } from '../../features/todosSlice'
+import { toggleTodo } from '../../features/todosSlice';
 
 // TODO: Add checkbox!
 // TODO: Add deletion
@@ -12,11 +13,22 @@ export function TodosList ({ completed = false }) {
     
     const todos = useSelector(selectTodos);
 
+    const dispatch = useDispatch();
+
+    // Executed in closure so that click on the checkbox works as well
+    // This function doesn't need to get the id from event target
+    const handleTodoToggle = id => {
+        dispatch(toggleTodo({ id }));
+    }
+
     return (
         <List>
             {
                 todos.map(todo => {
-                    return <ListItem key={todo.id}>{todo.task}</ListItem>
+                    return <ListItem key={todo.id} id={todo.id} onClick={() => handleTodoToggle(todo.id)}>
+                               <Checkbox checked={todo.completed}/>
+                               {todo.completed ? <s>{todo.task}</s> : todo.task}
+                           </ListItem>
                 })
                 
             }
