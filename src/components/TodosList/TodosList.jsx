@@ -32,8 +32,8 @@ export function TodosList ({ completed = false }) {
         <List>
             {
             todos.map(todo => (
-                <ListItem key={todo.id} id={todo.id} onClick={() => handleTodoToggle(todo.id)}>
-                    <Checkbox checked={todo.completed}/>
+                <ListItem key={todo.id} id={todo.id}>
+                    <Checkbox checked={todo.completed} onClick={() => handleTodoToggle(todo.id)}/>
                     {todo.completed ? <s>{todo.task}</s> : todo.task}
                     <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
                         <DeleteIcon/>
