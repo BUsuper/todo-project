@@ -1,4 +1,4 @@
-import { Checkbox, IconButton, List, ListItem } from '@mui/material/';
+import { Checkbox, Divider, IconButton, List, ListItem } from '@mui/material/';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTodo, makeSelectTodos } from '../../features/todosSlice'
@@ -27,7 +27,8 @@ export function TodosList ({ completed = false }) {
         dispatch(deleteTodo(id));
     }
 
-    return (
+    return (<>
+        <Divider>{completed ? "COMPLETED" : "TO DO"}</Divider>
         <List>
             {
             todos.map(todo => (
@@ -41,5 +42,5 @@ export function TodosList ({ completed = false }) {
                 ))
             }
         </List>
-    );
+    </>);
 }
