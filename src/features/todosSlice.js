@@ -44,7 +44,10 @@ export const makeSelectTodos = (completed) => createSelector(
         const todosList = Object.values(todos);
         return todosList.filter(todo => todo.completed === completed);
     },
-)
+);
+
+// Don't need memoization here, just a simple selector
+export const selectTodo = id => state => state.todos.entities[id];
 
 // Export actions
 export const { addTodo, deleteTodo, toggleTodo } = todosSlice.actions;
