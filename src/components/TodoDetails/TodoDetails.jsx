@@ -10,7 +10,7 @@ export function TodoDetails({ id }) {
     const [notesText, setNotesText] = useState(todo.notes);
     // Do I really need the disabled attribute?
     return (<>
-        <TextField slotProps={{readOnly: true}} disabled value={taskText} label="Todo"></TextField>
-        <TextField slotProps={{readOnly: true}} disabled value={notesText} label="Notes"></TextField>
+        <TextField slotProps={{readOnly: true}} disabled value={taskText} id={`taskText${id}`} label="Todo"></TextField>
+        <TextField slotProps={{readOnly: true}} disabled value={notesText} id={`notesText${id}`} label="Notes"></TextField>
     </>);
 }
