@@ -17,7 +17,10 @@ export function TodoForm() {
         setter(userInput);
     }
 
-    const handleTodoAddition = (todo, notes) => {
+    const handleTodoAddition = (e, todo, notes) => {
+        // Prevent the page from reloading when the form is submitted
+        e.preventDefault();
+
         // Generating an id and create a todo object
         const newTodo = {
             id: uuidv4(),
@@ -35,9 +38,10 @@ export function TodoForm() {
     }
 
     // Using a closure to pass additonal parameters to handleUserInput
-    return <>
-        <TextField label="Todo" variant="outlined" value={todoInput} onChange={e => handleUserInput(e, setTodoInput)}></TextField>
-        <TextField label="Add notes" variant="outlined" value={notesInput} onChange={e => handleUserInput(e, setNotesInput)}></TextField>
-        <Button variant="contained" onClick={() => handleTodoAddition(todoInput, notesInput)}>Add Todo</Button>
-    </>
+    // TODO: Check if ids are correct
+    return <form id="TodoForm" onSubmit={(e) => handleTodoAddition(e, todoInput, notesInput)}>
+        <TextField id="todoInputField" name="todo" label="Todo" variant="outlined" value={todoInput} onChange={e => handleUserInput(e, setTodoInput)}></TextField>
+        <TextField id="notesInputField"  name="notes" label="Add notes" variant="outlined" value={notesInput} onChange={e => handleUserInput(e, setNotesInput)}></TextField>
+        <Button id="addTodoButton" type="submit" variant="contained">Add Todo</Button>
+    </form>
 }
