@@ -3,6 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTodo, makeSelectTodos } from '../../features/todosSlice'
 import { toggleTodo } from '../../features/todosSlice';
+import { TodoDetails } from '../TodoDetails/TodoDetails';
 
 // TODO: Add checkbox!
 // TODO: Add deletion
@@ -18,7 +19,8 @@ export function TodosList ({ completed = false }) {
 
     // Executed in closure so that click on the checkbox works as well
     // This function doesn't need to get the id from event target
-    const handleTodoToggle = id => {
+    const handleTodoToggle = (e, id) => {
+        e.stopPropagation();
         dispatch(toggleTodo({ id }));
     }
 
@@ -33,11 +35,12 @@ export function TodosList ({ completed = false }) {
             {
             todos.map(todo => (
                 <ListItem key={todo.id} id={todo.id}>
-                    <Checkbox checked={todo.completed} onClick={() => handleTodoToggle(todo.id)}/>
+                    <Checkbox checked={todo.completed} onClick={(e) => handleTodoToggle(e, todo.id)}/>
                     {todo.completed ? <s>{todo.task}</s> : todo.task}
                     <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
                         <DeleteIcon/>
                     </IconButton>
+                    <TodoDetails id={todo.id}></TodoDetails>
                 </ListItem>
                 ))
             }
