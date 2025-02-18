@@ -1,12 +1,9 @@
-import { Checkbox, Divider, IconButton, List, ListItem } from '@mui/material/';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteTodo, makeSelectTodos } from '../../features/todosSlice'
-import { toggleTodo } from '../../features/todosSlice';
-import { TodoDetails } from '../TodoDetails/TodoDetails';
+import { Divider, List } from '@mui/material/';
+import { useSelector } from 'react-redux';
+import { makeSelectTodos } from '../../features/todosSlice'
+import { TodoItem } from '../../components';
 
-// TODO: Add checkbox!
-// TODO: Add deletion
+// TODO: Put all consts and stuff into useTodoList?
 
 export function TodosList ({ completed = false }) {
     // A memoized selector so that the component doesn't rerender if no changed in state occur
@@ -15,33 +12,12 @@ export function TodosList ({ completed = false }) {
     
     const todos = useSelector(selectTodos);
 
-    const dispatch = useDispatch();
-
-    // Executed in closure so that click on the checkbox works as well
-    // This function doesn't need to get the id from event target
-    const handleTodoToggle = (e, id) => {
-        e.stopPropagation();
-        dispatch(toggleTodo({ id }));
-    }
-
-    const handleDeletion = (e, id) => {
-        e.stopPropagation();
-        dispatch(deleteTodo(id));
-    }
-
     return (<>
         <Divider>{completed ? "COMPLETED" : "TO DO"}</Divider>
         <List>
             {
             todos.map(todo => (
-                <ListItem key={todo.id} id={todo.id}>
-                    <Checkbox checked={todo.completed} onClick={(e) => handleTodoToggle(e, todo.id)}/>
-                    {todo.completed ? <s>{todo.task}</s> : todo.task}
-                    <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
-                        <DeleteIcon/>
-                    </IconButton>
-                    <TodoDetails id={todo.id}></TodoDetails>
-                </ListItem>
+                <TodoItem id={todo.id} key={todo.id}></TodoItem>
                 ))
             }
         </List>
