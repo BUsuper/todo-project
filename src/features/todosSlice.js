@@ -7,7 +7,6 @@ const initialState = todoAdapter.getInitialState();
 
 // A slice for the whole todo app
 // No need to type "initialState: initialState" because the property name and variable name are the same (syntactic sugar)
-// TODO: Add more reducers (toggleTodo, ...)
 const todosSlice = createSlice({
     name: 'todos',
     initialState,
