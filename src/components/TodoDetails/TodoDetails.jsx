@@ -31,6 +31,7 @@ export function TodoDetails({ id }) {
         }
 
         dispatch(updateTodo(todo));
+        setIsEditingActive(false);
     }
 
     const handleCancelEditing = () => {
