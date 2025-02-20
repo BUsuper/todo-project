@@ -8,6 +8,12 @@ export function loadTodos() {
     }
 }
 
+// Need to serialize the object before adding it to local storage
 export function saveTodos(state) {
-    localStorage.setItem('state', JSON.stringify(state));
+    try {
+        localStorage.setItem('state', JSON.stringify(state));
+    }    
+    catch (error) {
+        console.log(error);
+    }
 }
