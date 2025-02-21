@@ -59,7 +59,7 @@ export function TodoDetails({ id }) {
             label="Notes">
         </TextField>
         <Button onClick={handleTriggerEditing}>Edit</Button>
-        <Button onClick={() => handleSaving(id)}>Save</Button>
-        <Button onClick={handleCancelEditing}>Cancel</Button>
+        <Button onClick={() => handleSaving(id)} disabled={!isEditingActive}>Save</Button>
+        <Button onClick={handleCancelEditing} disabled={!isEditingActive}>Cancel</Button>
     </div>);
 }
