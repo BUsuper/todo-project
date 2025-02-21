@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { handleUserInput } from "../../handlers/handleUserInput";
 import { selectTodo, updateTodo } from "../../features/todosSlice";
 
 export function TodoDetails({ id }) {
@@ -11,13 +12,6 @@ export function TodoDetails({ id }) {
     const [notesText, setNotesText] = useState(todo.notes);
 
     const dispatch = useDispatch();
-
-    // This is a copy of a function from TodoForm
-    // TODO: Import this function instead of copying it from TodoForm
-    const handleUserInput = (e, setter) => {
-        const userInput = e.target.value;
-        setter(userInput);
-    }
 
     const handleTriggerEditing = () => {
         setIsEditingActive(prev => !prev);

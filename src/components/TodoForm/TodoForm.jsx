@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
+import { handleUserInput } from "../../handlers/handleUserInput";
 import { addTodo } from "../../features/todosSlice";
 
 export function TodoForm() {
@@ -10,12 +11,6 @@ export function TodoForm() {
 
     // Get dispatch from useDispatch
     const dispatch = useDispatch();
-
-    // Use event and a setter function passed to it to save text from a field into corresponding state
-    const handleUserInput = (e, setter) => {
-        const userInput = e.target.value;
-        setter(userInput);
-    }
 
     const handleTodoAddition = (e, todo, notes) => {
         // Prevent the page from reloading when the form is submitted
