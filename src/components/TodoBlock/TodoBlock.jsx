@@ -1,12 +1,12 @@
-import { Box } from '@mui/material';
+import { Grid2 } from '@mui/material';
 import { TodoForm, TodosList } from '../../components';
 
 export function TodoBlock() {
     return (
-        <Box>
+        <Grid2 size={{xs: 12, sm: 8}}>
             <TodoForm/>
             <TodosList/>
             <TodosList completed={true}/>
-        </Box>
+        </Grid2>
     );
 }
