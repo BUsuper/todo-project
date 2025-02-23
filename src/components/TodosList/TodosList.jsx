@@ -1,4 +1,4 @@
-import { Divider, List } from '@mui/material/';
+import { Box, Divider, List } from '@mui/material/';
 import { useSelector } from 'react-redux';
 import { makeSelectTodos } from '../../features/todosSlice'
 import { TodoItem } from '../../components';
@@ -10,14 +10,16 @@ export function TodosList ({ completed = false }) {
     
     const todos = useSelector(selectTodos);
 
-    return (<>
-        <Divider>{completed ? "COMPLETED" : "TO DO"}</Divider>
-        <List>
-            {
-            todos.map(todo => (
-                <TodoItem id={todo.id} key={todo.id}></TodoItem>
-                ))
-            }
-        </List>
-    </>);
+    return (
+        <Box sx={{margin: "25px auto"}}>
+            <Divider>{completed ? "COMPLETED" : "TO DO"}</Divider>
+            <List>
+                {
+                todos.map(todo => (
+                    <TodoItem id={todo.id} key={todo.id}></TodoItem>
+                    ))
+                }
+            </List>
+        </Box>
+    );
 }
