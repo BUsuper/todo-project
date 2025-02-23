@@ -1,4 +1,4 @@
-import { Checkbox, IconButton, ListItem } from '@mui/material/';
+import { Box, Checkbox, IconButton, ListItem, Typography } from '@mui/material/';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,13 +29,18 @@ export function TodoItem({ id }) {
 
     const todo = useSelector(selectTodo(id));
     return (
-        <ListItem id={todo.id} onClick={handleTodoDetailsVisibility}>
-            <Checkbox id={`checkbox${todo.id}`} checked={todo.completed} onClick={(e) => handleTodoToggle(e, todo.id)}/>
-            {todo.completed ? <s>{todo.task}</s> : todo.task}
-            <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
-                <DeleteIcon/>
-            </IconButton>
-            {isTodoDetailsVisible && <TodoDetails id={todo.id}></TodoDetails>}
-        </ListItem>
-    );
+        <Box sx={{border: "solid 1px", borderColor: "divider", borderRadius:"5px", width:"80%", margin:"15px auto"}}>
+            <ListItem id={todo.id} onClick={handleTodoDetailsVisibility}>
+                <Box sx={{display:"flex", alignItems: "center", width:"100%"}}>
+                    <Checkbox id={`checkbox${todo.id}`} checked={todo.completed} sx={{width: "10%"}} onClick={(e) => handleTodoToggle(e, todo.id)}/>
+                    <Typography sx={{width: "80%", paddingLeft:"10px"}}>{todo.completed ? <s>{todo.task}</s> : todo.task}</Typography>
+                    <IconButton sx={{width: "10%"}} onClick={(e) => handleDeletion(e, todo.id)}>
+                        <DeleteIcon/>
+                    </IconButton>
+                </Box>
+            </ListItem>
+            <Box>
+                {isTodoDetailsVisible && <TodoDetails id={todo.id}></TodoDetails>}
+            </Box>
+        </Box>);
 }
