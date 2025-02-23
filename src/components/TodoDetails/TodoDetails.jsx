@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleUserInput } from "../../handlers/handleUserInput";
@@ -35,14 +35,15 @@ export function TodoDetails({ id }) {
     }
 
     // Yes, you need to stop the event from bubbling up to the TodoList
-    return (<div onClick={(e) => e.stopPropagation()}>
+    return (<Box onClick={(e) => e.stopPropagation()}>
         <TextField 
             slotProps={{readOnly: true}}
             disabled={!isEditingActive}
             value={taskText}
             onChange={(e) => handleUserInput(e, setTodoText)}
             id={`taskText${id}`} 
-            label="Todo">
+            label="Todo"
+            sx={{margin:"auto 5px"}}>
         </TextField>
         <TextField 
             slotProps={{readOnly: true}} 
@@ -50,10 +51,11 @@ export function TodoDetails({ id }) {
             value={notesText}
             onChange={(e) => handleUserInput(e, setNotesText)} 
             id={`notesText${id}`} 
-            label="Notes">
+            label="Notes"
+            sx={{margin:"auto 5px"}}>
         </TextField>
         <Button onClick={handleTriggerEditing}>Edit</Button>
         <Button onClick={() => handleSaving(id)} disabled={!isEditingActive}>Save</Button>
         <Button onClick={handleCancelEditing} disabled={!isEditingActive}>Cancel</Button>
-    </div>);
+    </Box>);
 }
