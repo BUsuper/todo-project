@@ -34,7 +34,12 @@ export function TodoForm() {
 
     // Using a closure to pass additonal parameters to handleUserInput
     return (
-        <Box component="form" id="TodoForm" onSubmit={(e) => handleTodoAddition(e, todoInput, notesInput)}>
+        <Box 
+            component="form"
+            id="TodoForm"
+            sx={{border: "solid 1px", borderColor: "divider", borderRadius:"5px", padding:"10px"}}
+            onSubmit={(e) => handleTodoAddition(e, todoInput, notesInput)}
+        >
             <TextField
                 id="todoInputField"
                 name="todo"
