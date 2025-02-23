@@ -35,27 +35,36 @@ export function TodoDetails({ id }) {
     }
 
     // Yes, you need to stop the event from bubbling up to the TodoList
-    return (<Box onClick={(e) => e.stopPropagation()}>
-        <TextField 
-            slotProps={{readOnly: true}}
-            disabled={!isEditingActive}
-            value={taskText}
-            onChange={(e) => handleUserInput(e, setTodoText)}
-            id={`taskText${id}`} 
-            label="Todo"
-            sx={{margin:"auto 5px"}}>
-        </TextField>
-        <TextField 
-            slotProps={{readOnly: true}} 
-            disabled={!isEditingActive} 
-            value={notesText}
-            onChange={(e) => handleUserInput(e, setNotesText)} 
-            id={`notesText${id}`} 
-            label="Notes"
-            sx={{margin:"auto 5px"}}>
-        </TextField>
-        <Button onClick={handleTriggerEditing}>Edit</Button>
-        <Button onClick={() => handleSaving(id)} disabled={!isEditingActive}>Save</Button>
-        <Button onClick={handleCancelEditing} disabled={!isEditingActive}>Cancel</Button>
+    return (
+    <Box onClick={(e) => e.stopPropagation()}>
+        <Box>
+            <TextField 
+                slotProps={{readOnly: true}}
+                disabled={!isEditingActive}
+                value={taskText}
+                onChange={(e) => handleUserInput(e, setTodoText)}
+                id={`taskText${id}`} 
+                label="Todo"
+                sx={{margin:"5px"}}>
+            </TextField>
+            <TextField 
+                slotProps={{readOnly: true}} 
+                disabled={!isEditingActive} 
+                value={notesText}
+                onChange={(e) => handleUserInput(e, setNotesText)} 
+                id={`notesText${id}`} 
+                label="Notes"
+                sx={{margin:"5px"}}>
+            </TextField>
+        </Box>
+        <Box>
+            {
+            isEditingActive ?
+                <Button variant="contained" sx={{margin:"10px"}} onClick={handleTriggerEditing}>Edit</Button> :
+                <Button variant="outlined" sx={{margin:"10px"}} onClick={handleTriggerEditing}>Edit</Button>
+            }
+            <Button variant="outlined" sx={{margin:"10px"}} onClick={() => handleSaving(id)} disabled={!isEditingActive}>Save</Button>
+            <Button variant="outlined" sx={{margin:"10px"}} onClick={handleCancelEditing} disabled={!isEditingActive}>Undo</Button>
+        </Box>
     </Box>);
 }
