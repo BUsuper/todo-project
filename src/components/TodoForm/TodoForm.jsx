@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
@@ -33,10 +33,28 @@ export function TodoForm() {
     }
 
     // Using a closure to pass additonal parameters to handleUserInput
-    // TODO: Check if ids are correct
-    return <form id="TodoForm" onSubmit={(e) => handleTodoAddition(e, todoInput, notesInput)}>
-        <TextField id="todoInputField" name="todo" label="Todo" variant="outlined" value={todoInput} onChange={e => handleUserInput(e, setTodoInput)}></TextField>
-        <TextField id="notesInputField"  name="notes" label="Add notes" variant="outlined" value={notesInput} onChange={e => handleUserInput(e, setNotesInput)}></TextField>
-        <Button id="addTodoButton" type="submit" variant="contained">Add Todo</Button>
-    </form>
+    return (
+        <Box component="form" id="TodoForm" onSubmit={(e) => handleTodoAddition(e, todoInput, notesInput)}>
+            <TextField
+                id="todoInputField"
+                name="todo"
+                label="Todo"
+                variant="outlined"
+                value={todoInput}
+                required
+                sx={{width: "80%", margin: "7.5px auto"}}
+                onChange={e => handleUserInput(e, setTodoInput)}>
+            </TextField>
+            <TextField
+                id="notesInputField"
+                name="notes"
+                label="Add notes"
+                variant="outlined"
+                value={notesInput}
+                sx={{width: "80%", margin: "7.5px auto"}}
+                onChange={e => handleUserInput(e, setNotesInput)}>
+            </TextField>
+            <Button id="addTodoButton" type="submit" variant="contained" sx={{display: "block", margin: "7.5px auto"}}>Add Todo</Button>
+        </Box>
+    );
 }
