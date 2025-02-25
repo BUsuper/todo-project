@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 export function CalendarBlock() {
     return (
         <Grid2 size={{sm: 12, md: 4}}>
-            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                 <DateCalendar></DateCalendar>
             </LocalizationProvider>
         </Grid2>
