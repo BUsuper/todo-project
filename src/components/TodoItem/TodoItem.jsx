@@ -32,9 +32,9 @@ export function TodoItem({ id }) {
         <Box sx={{border: "solid 1px", borderColor: "divider", borderRadius:"5px", width:"80%", margin:"15px auto"}}>
             <ListItem id={todo.id} onClick={handleTodoDetailsVisibility}>
                 <Box sx={{display:"flex", alignItems: "center", width:"100%"}}>
-                    <Checkbox id={`checkbox${todo.id}`} checked={todo.completed} sx={{width: "10%"}} onClick={(e) => handleTodoToggle(e, todo.id)}/>
-                    <Typography sx={{width: "80%", paddingLeft:"10px"}}>{todo.completed ? <s>{todo.task}</s> : todo.task}</Typography>
-                    <IconButton sx={{width: "10%"}} onClick={(e) => handleDeletion(e, todo.id)}>
+                    <Checkbox id={`checkbox${todo.id}`} checked={todo.completed} onClick={(e) => handleTodoToggle(e, todo.id)}/>
+                    <Typography sx={{flexGrow:1, paddingLeft:"10px"}}>{todo.completed ? <s>{todo.task}</s> : todo.task}</Typography>
+                    <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
                         <DeleteIcon/>
                     </IconButton>
                 </Box>
