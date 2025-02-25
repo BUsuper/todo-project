@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleUserInput } from "../../handlers/handleUserInput";
 import { selectTodo, updateTodo } from "../../features/todosSlice";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/de';
 
 export function TodoDetails({ id }) {
     const todo = useSelector(selectTodo(id))
@@ -37,7 +40,7 @@ export function TodoDetails({ id }) {
     // Yes, you need to stop the event from bubbling up to the TodoList
     return (
     <Box onClick={(e) => e.stopPropagation()}>
-        <Box>
+        <Box sx={{display:"flex", flexDirection:"column"}}>
             <TextField 
                 slotProps={{readOnly: true}}
                 disabled={!isEditingActive}
@@ -51,11 +54,17 @@ export function TodoDetails({ id }) {
                 slotProps={{readOnly: true}} 
                 disabled={!isEditingActive} 
                 value={notesText}
+                multiline
                 onChange={(e) => handleUserInput(e, setNotesText)} 
                 id={`notesText${id}`} 
                 label="Notes"
                 sx={{margin:"5px"}}>
             </TextField>
+        </Box>
+        <Box>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+                {isEditingActive && <DatePicker></DatePicker>}
+            </LocalizationProvider>
         </Box>
         <Box>
             {
