@@ -5,14 +5,18 @@ import { handleUserInput } from "../../handlers/handleUserInput";
 import { selectTodo, updateTodo } from "../../features/todosSlice";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import 'dayjs/locale/de';
+import dayjs from 'dayjs';
+import 'dayjs/locale/en-gb';
 
 export function TodoDetails({ id }) {
     const todo = useSelector(selectTodo(id))
 
     const [isEditingActive, setIsEditingActive] = useState(false);
+    // These values are obtained from the todo that's being edited first
+    // then they're used to update it
     const [taskText, setTodoText] = useState(todo.task);
     const [notesText, setNotesText] = useState(todo.notes);
+    const [date, setDate] = useState(todo.date);
 
     const dispatch = useDispatch();
 
@@ -25,6 +29,7 @@ export function TodoDetails({ id }) {
             id,
             task: taskText,
             notes: notesText,
+            date,
         }
 
         dispatch(updateTodo(todo));
@@ -34,7 +39,13 @@ export function TodoDetails({ id }) {
     const handleCancelEditing = () => {
         setTodoText(todo.task);
         setNotesText(todo.notes);
+        setDate(todo.date);
         setIsEditingActive(false);
+    }
+
+    // Saves the date as a simple string, not a dayjs object
+    const handleDateChange = (date) => {
+        setDate(`${date.year()}-${date.month() + 1}-${date.date()}`);
     }
 
     // Yes, you need to stop the event from bubbling up to the TodoList
@@ -62,9 +73,23 @@ export function TodoDetails({ id }) {
             </TextField>
         </Box>
         <Box>
-            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
-                {isEditingActive && <DatePicker></DatePicker>}
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
+                <DatePicker 
+                    onAccept={handleDateChange}
+                    label="Todo Deadline"
+                    defaultValue={date ? dayjs(date) : undefined}
+                    disabled={!isEditingActive}
+                    sx={{margin:"5px"}}>
+                </DatePicker>
             </LocalizationProvider>
+        </Box>
+        {/* This works like shit: if the date is already picked and you remove it,
+        and you want to set the same date again, you have to click on another date
+        then click on the old one */}
+        <Box>
+            {date ?
+            <Button onClick={() => setDate(undefined)} disabled={!isEditingActive} variant="outlined">Delete deadline</Button> :
+            <Button disabled variant="contained">No deadline</Button>}
         </Box>
         <Box>
             {

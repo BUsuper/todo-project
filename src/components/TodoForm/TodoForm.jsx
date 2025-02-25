@@ -17,6 +17,7 @@ export function TodoForm() {
         e.preventDefault();
 
         // Generating an id and create a todo object
+        // No point to include date: undefined as it will be lost during serialization
         const newTodo = {
             id: uuidv4(),
             task: todo,
