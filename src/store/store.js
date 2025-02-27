@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todosReducer from '../features/todosSlice';
+import filtersReducer from '../features/filtersSlice';
 import { saveTodos, loadTodos } from '../utils/localStorage';
 
 // Will be used as initial state when passed as a parameter
@@ -11,6 +12,7 @@ const preloadedState = {
 const store = configureStore({
     reducer: {
         todos: todosReducer,
+        filters: filtersReducer,
     },
     preloadedState,
 });
