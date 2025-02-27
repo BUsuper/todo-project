@@ -50,7 +50,7 @@ export function TodoDetails({ id }) {
 
     // Yes, you need to stop the event from bubbling up to the TodoList
     return (
-    <Box onClick={(e) => e.stopPropagation()}>
+    <Box id={`todoDetails${id}`}onClick={(e) => e.stopPropagation()}>
         <Box sx={{display:"flex", flexDirection:"column"}}>
             <TextField 
                 slotProps={{readOnly: true}}
@@ -58,6 +58,7 @@ export function TodoDetails({ id }) {
                 value={taskText}
                 onChange={(e) => handleUserInput(e, setTodoText)}
                 id={`taskText${id}`} 
+                name={`taskText${id}`}
                 label="Todo"
                 sx={{margin:"5px"}}>
             </TextField>
@@ -67,7 +68,8 @@ export function TodoDetails({ id }) {
                 value={notesText}
                 multiline
                 onChange={(e) => handleUserInput(e, setNotesText)} 
-                id={`notesText${id}`} 
+                id={`notesText${id}`}
+                name={`notesText${id}`} 
                 label="Notes"
                 sx={{margin:"5px"}}>
             </TextField>
@@ -76,6 +78,7 @@ export function TodoDetails({ id }) {
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                 <DatePicker 
                     onAccept={handleDateChange}
+                    id={`datePicker${id}`}
                     label="Todo Deadline"
                     defaultValue={date ? dayjs(date) : undefined}
                     disabled={!isEditingActive}
@@ -88,17 +91,17 @@ export function TodoDetails({ id }) {
         then click on the old one */}
         <Box>
             {date ?
-            <Button onClick={() => setDate(undefined)} disabled={!isEditingActive} variant="outlined">Delete deadline</Button> :
-            <Button disabled variant="contained">No deadline</Button>}
+            <Button onClick={() => setDate(undefined)} id={`deadlineButton${id}`} disabled={!isEditingActive} variant="outlined">Delete deadline</Button> :
+            <Button id={`deadlineButton${id}`} disabled variant="contained">No deadline</Button>}
         </Box>
         <Box>
             {
             isEditingActive ?
-                <Button variant="contained" sx={{margin:"10px"}} onClick={handleTriggerEditing}>Edit</Button> :
-                <Button variant="outlined" sx={{margin:"10px"}} onClick={handleTriggerEditing}>Edit</Button>
+                <Button id={`editButton${id}`} variant="contained" sx={{margin:"10px"}} onClick={handleTriggerEditing}>Edit</Button> :
+                <Button id={`editButton${id}`} variant="outlined" sx={{margin:"10px"}} onClick={handleTriggerEditing}>Edit</Button>
             }
-            <Button variant="outlined" sx={{margin:"10px"}} onClick={() => handleSaving(id)} disabled={!isEditingActive}>Save</Button>
-            <Button variant="outlined" sx={{margin:"10px"}} onClick={handleCancelEditing} disabled={!isEditingActive}>Undo</Button>
+            <Button id={`saveButton${id}`} variant="outlined" sx={{margin:"10px"}} onClick={() => handleSaving(id)} disabled={!isEditingActive}>Save</Button>
+            <Button id={`undoButton${id}`} variant="outlined" sx={{margin:"10px"}} onClick={handleCancelEditing} disabled={!isEditingActive}>Undo</Button>
         </Box>
     </Box>);
 }
