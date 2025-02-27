@@ -6,7 +6,7 @@ export function CalendarDay(props) {
     const {daysWithTodos, day, outsideCurrentMonth, ...otherProps} = props;
 
     // Now I just need to compare the date of this day to a list of days with a todo
-    const hasTodo = daysWithTodos.some(dayWithTodo => dayWithTodo === `${day.year()}-${day.month() + 1}-${day.date()}`);
+    const hasTodo = daysWithTodos.has(`${day.year()}-${day.month() + 1}-${day.date()}`);
     const isHighlighted = !outsideCurrentMonth && hasTodo;
 
     return (
