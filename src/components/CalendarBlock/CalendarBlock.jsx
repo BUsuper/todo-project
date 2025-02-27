@@ -10,15 +10,26 @@ export function CalendarBlock() {
         setSelectedDate(`${date.year()}-${date.month() + 1}-${date.date()}`);
     }
 
+    const daysWithTodos = ['2025-2-14', '2025-2-19', '2025-2-3', '2025-3-1'];
+
     const highlightedDay = (pickersDayProps) => {
-        const {day, outsideCurrentMonth} = pickersDayProps;
-        // Now I just need to compare this to a list of days with a todo
-        const hasTodo = !Boolean(`${day.year()}-${day.month() + 1}-${day.date()}`.localeCompare("2025-2-1"))
+        // daysWithTodos shouldn't be passed to PickerDays (React doesn't recognise it as a correct prop)
+        const {daysWithTodos, day, outsideCurrentMonth, ...otherProps} = pickersDayProps;
+
+        // Now I just need to compare the date of this day to a list of days with a todo
+        const hasTodo = daysWithTodos.some(dayWithTodo => dayWithTodo === `${day.year()}-${day.month() + 1}-${day.date()}`);
+        const isHighlighted = !outsideCurrentMonth && hasTodo;
 
         return (
-            <Badge variant={!outsideCurrentMonth && hasTodo && "dot"} overlap="circular" color='success'>
+            <Badge 
+                variant={isHighlighted && "dot"}
+                overlap="circular"
+                color='primary'
+            >
                 <PickersDay
-                    {...pickersDayProps}
+                    day={day}
+                    outsideCurrentMonth={outsideCurrentMonth}
+                    {...otherProps}
                 />
             </Badge>
         );
@@ -30,6 +41,7 @@ export function CalendarBlock() {
                 <DateCalendar
                 onChange={handleDateSelection}
                 slots={{day: highlightedDay}}
+                slotProps={{day: {daysWithTodos}}}
                 >
                 </DateCalendar>
                 Selected date: {selectedDate}
