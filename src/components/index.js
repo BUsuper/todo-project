@@ -6,3 +6,4 @@ export { CalendarBlock } from './CalendarBlock/CalendarBlock';
 export { TodoBlock } from './TodoBlock/TodoBlock';
 export { TodosCalendar } from './TodosCalendar/TodosCalendar';
 export { CalendarDay } from './CalendarDay/CalendarDay';
+export { FiltersDetails } from './FiltersDetails/FiltersDetails'

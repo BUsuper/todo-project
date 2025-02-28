@@ -1,15 +1,13 @@
-import { Box, Button, Grid2, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { selectDate } from '../../features/filtersSlice';
-import { TodosCalendar } from '../TodosCalendar/TodosCalendar';
+import { Grid2 } from '@mui/material';
+import { TodosCalendar, FiltersDetails } from '../../components';
+
 
 export function CalendarBlock() {
-    const selectedDate = useSelector(selectDate);
 
     return (
         <Grid2 size={{sm: 12, md: 5}}>
             <TodosCalendar />
-            Selected date: {selectedDate}
+            <FiltersDetails />
         </Grid2>
     );
 }
