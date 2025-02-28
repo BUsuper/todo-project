@@ -41,10 +41,10 @@ export function TodoItem({ id, overdue }) {
                         onClick={(e) => handleTodoToggle(e, todo.id)}
                     />
                     <Typography
+                        color={overdue ? "error" : ""}
                         sx={{
                             flexGrow:1,
                             paddingLeft:"10px",
-                            color: overdue ? "red" : "",
                         }}
                     >
                         {todo.completed ? <s>{todo.task}</s> : todo.task}
