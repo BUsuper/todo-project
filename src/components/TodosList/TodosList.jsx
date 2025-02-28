@@ -21,7 +21,7 @@ export function TodosList ({ completed = false }) {
             case "today":
                 return todo.date === today;
             case "selected date":
-                return todo.date === selectedDate;
+                return todo.date === selectedDate && !todo.completed;
             case "overdue":
                 return todo.date < today && !todo.completed;
             default:
