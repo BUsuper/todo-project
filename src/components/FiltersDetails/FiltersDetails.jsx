@@ -46,7 +46,7 @@ export function FiltersDetails() {
                     variant={activeFilter === "" ? "contained" : "outlined"}
                     sx={{margin:"7.5px auto", maxWidth:"200px"}}
                 >
-                    {activeFilter === "" ? "No filters" : "Remove filters"}
+                    {activeFilter === "" ? "All" : "Remove filters"}
                 </Button>
             </Box>
         </Box>
