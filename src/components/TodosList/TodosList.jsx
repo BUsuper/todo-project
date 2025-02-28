@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { makeSelectTodos } from '../../features/todosSlice'
 import { TodoItem } from '../../components';
 import { selectFilter, selectDate } from '../../features/filtersSlice';
+import { getToday } from '../../utils/';
 
 export function TodosList ({ completed = false }) {
     // A memoized selector so that the component doesn't rerender if no changed in state occur
@@ -13,8 +14,7 @@ export function TodosList ({ completed = false }) {
     
     const filter = useSelector(selectFilter);
     const selectedDate = useSelector(selectDate);
-    const date = new Date();
-    const today = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    const today = getToday()
 
     const filteredTodos = todos.filter((todo) => {
         switch(filter) {
