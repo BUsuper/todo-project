@@ -3,7 +3,7 @@ import { TodoForm, TodosList } from '../../components';
 
 export function TodoBlock() {
     return (
-        <Grid2 size={{sm: 12, md: 8}}>
+        <Grid2 size={{sm: 12, md: 7}}>
             <TodoForm/>
             <TodosList/>
             <TodosList completed={true}/>

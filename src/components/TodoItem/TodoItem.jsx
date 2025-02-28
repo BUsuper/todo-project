@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTodo, deleteTodo, selectTodo } from '../../features/todosSlice';
 import { TodoDetails } from '../../components';
 
-export function TodoItem({ id }) {
+export function TodoItem({ id, overdue }) {
     const dispatch = useDispatch();
 
     const [isTodoDetailsVisible, setIsTodoDetailsVisible] = useState(false);
@@ -30,10 +30,25 @@ export function TodoItem({ id }) {
     const todo = useSelector(selectTodo(id));
     return (
         <Box sx={{border: "solid 1px", borderColor: "divider", borderRadius:"5px", width:"80%", margin:"15px auto"}}>
-            <ListItem id={todo.id} onClick={handleTodoDetailsVisibility}>
+            <ListItem
+                id={todo.id}
+                onClick={handleTodoDetailsVisibility}
+            >
                 <Box sx={{display:"flex", alignItems: "center", width:"100%"}}>
-                    <Checkbox id={`checkbox${todo.id}`} checked={todo.completed} onClick={(e) => handleTodoToggle(e, todo.id)}/>
-                    <Typography sx={{flexGrow:1, paddingLeft:"10px"}}>{todo.completed ? <s>{todo.task}</s> : todo.task}</Typography>
+                    <Checkbox
+                        id={`checkbox${todo.id}`}
+                        checked={todo.completed}
+                        onClick={(e) => handleTodoToggle(e, todo.id)}
+                    />
+                    <Typography
+                        color={overdue ? "error" : ""}
+                        sx={{
+                            flexGrow:1,
+                            paddingLeft:"10px",
+                        }}
+                    >
+                        {todo.completed ? <s>{todo.task}</s> : todo.task}
+                    </Typography>
                     <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
                         <DeleteIcon/>
                     </IconButton>

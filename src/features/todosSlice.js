@@ -23,7 +23,7 @@ const todosSlice = createSlice({
             const todo = action.payload;
             const id = todo.id;
 
-            todoAdapter.updateOne(state, {id, changes: {task: todo.task, notes: todo.notes}})
+            todoAdapter.updateOne(state, {id, changes: {task: todo.task, notes: todo.notes, date: todo.date}})
         }
     },
 });
@@ -35,10 +35,9 @@ Todo entry structure:
     task,      - the main text of the task, necessary to create it (string)
     completed, - shows whether the task is completed or not (boolean)
     notes,     - another text field, a longer description of the task, empty by default (string)
+    date,      - contains the todo's deadline (string) - OPTIONAL
 }
 */
-
-// TODO: Consider 'soft deletions', i.e. adding a boolean 'deleted' field that's false by default
 
 // A factory function for a memoized selector for todos
 // The input reducer returns a stable reference (no change in state means no reference)
