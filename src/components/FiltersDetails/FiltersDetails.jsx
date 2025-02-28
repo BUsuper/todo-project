@@ -16,13 +16,13 @@ export function FiltersDetails() {
         <Box id="filters">
             <Box>
                 <Typography>Selected date: {selectedDate}</Typography>
-                <Typography>Selected filter: {activeFilter}</Typography>
             </Box>
-            <Box>
             <Typography>Show todos</Typography>
+            <Box sx={{display:"flex", flexDirection:"column"}}>
                 <Button 
                     onClick={() => handleFilterSelection("today")}
                     variant={activeFilter === "today" ? "contained" : "outlined"}
+                    sx={{margin:"7.5px auto", maxWidth:"200px"}}
                 >
                     Due today
                 </Button>
@@ -30,14 +30,23 @@ export function FiltersDetails() {
                     onClick={() => handleFilterSelection("selected date")}
                     disabled={Boolean(!selectedDate)}
                     variant={activeFilter === "selected date" ? "contained" : "outlined"}
+                    sx={{margin:"7.5px auto", maxWidth:"200px"}}
                 >
                     Due on selected date
                 </Button>
                 <Button
                     onClick={() => handleFilterSelection("overdue")}
                     variant={activeFilter === "overdue" ? "contained" : "outlined"}
+                    sx={{margin:"7.5px auto", maxWidth:"200px"}}
                 >
                     Overdue
+                </Button>
+                <Button
+                    onClick={() => handleFilterSelection("")}
+                    variant={activeFilter === "" ? "contained" : "outlined"}
+                    sx={{margin:"7.5px auto", maxWidth:"200px"}}
+                >
+                    {activeFilter === "" ? "No filters" : "Remove filters"}
                 </Button>
             </Box>
         </Box>
