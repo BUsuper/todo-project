@@ -1,7 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTodo, updateTodo } from "../../features/todosSlice";
+import { updateTodo } from "../../features/todos/todosSlice";
+import { selectTodo } from "../../features/todos/todosSelectors";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';

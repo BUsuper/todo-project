@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDate, selectFilter, setFilter } from '../../features/filtersSlice';
+import { setFilter } from '../../features/filters/filtersSlice';
+import { selectDate, selectFilter } from '../../features/filters/filtersSelectors';
 
 export function FiltersDetails() {
     const selectedDate = useSelector(selectDate);

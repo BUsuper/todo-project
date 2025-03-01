@@ -2,7 +2,8 @@ import { Box, Checkbox, IconButton, ListItem, Typography } from '@mui/material/'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTodo, deleteTodo, selectTodo } from '../../features/todosSlice';
+import { toggleTodo, deleteTodo } from '../../features/todos/todosSlice';
+import { selectTodo } from '../../features/todos/todosSelectors'
 import { TodoDetails } from '../../components';
 
 export function TodoItem({ id, overdue }) {

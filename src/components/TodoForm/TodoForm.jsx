@@ -2,7 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-import { addTodo } from "../../features/todosSlice";
+import { addTodo } from "../../features/todos/todosSlice";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/en-gb';

@@ -1,8 +1,8 @@
 import { Box, Divider, List } from '@mui/material/';
 import { useSelector } from 'react-redux';
-import { makeSelectTodos } from '../../features/todosSlice'
+import { makeSelectTodos } from '../../features/todos/todosSelectors'
 import { TodoItem } from '../../components';
-import { selectFilter, selectDate } from '../../features/filtersSlice';
+import { selectFilter, selectDate } from '../../features/filters/filtersSelectors';
 import { getToday } from '../../utils/';
 
 export function TodosList ({ completed = false }) {
