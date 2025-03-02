@@ -30,7 +30,16 @@ export function TodoItem({ id, overdue }) {
 
     const todo = useSelector(selectTodo(id));
     return (
-        <Box sx={{border: "solid 1px", borderColor: "divider", borderRadius:"5px", width:"80%", margin:"15px auto"}}>
+        <Box 
+            sx={{
+                border: "solid 1px",
+                borderColor: "divider",
+                borderRadius:"5px",
+                width:"80%",
+                margin:"15px auto"
+                }}
+            className="todoItem"
+        >
             <ListItem
                 id={todo.id}
                 onClick={handleTodoDetailsVisibility}
