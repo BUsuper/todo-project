@@ -27,7 +27,7 @@ export function FiltersDetails() {
             <Box>
                 {selectedDate && <Typography>Selected date: {selectedDate}</Typography>}
             </Box>
-            <Typography visibility={selectedDate === "" ? false : true}>Show todos</Typography>
+            <Typography>Show todos</Typography>
             <Box sx={{display:"flex", flexDirection:"column"}}>
                 <Button 
                     onClick={() => handleFilterSelection("today")}
