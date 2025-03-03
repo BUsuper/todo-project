@@ -14,11 +14,20 @@ export function FiltersDetails() {
     }
 
     return (
-        <Box id="filters" sx={{width: "320px", margin: "17px auto", border: "solid 1px", borderColor: "divider", borderRadius:"5px", padding:"10px"}}>
+        <Box 
+            id="filters"
+            sx={{
+                width: "320px",
+                margin: "17px auto",
+                border: "solid 1px",
+                borderColor: "divider",
+                borderRadius:"5px",
+                padding:"10px"
+            }}>
             <Box>
-                <Typography>Selected date: {selectedDate}</Typography>
+                {selectedDate && <Typography>Selected date: {selectedDate}</Typography>}
             </Box>
-            <Typography>Show todos</Typography>
+            <Typography visibility={selectedDate === "" ? false : true}>Show todos</Typography>
             <Box sx={{display:"flex", flexDirection:"column"}}>
                 <Button 
                     onClick={() => handleFilterSelection("today")}
