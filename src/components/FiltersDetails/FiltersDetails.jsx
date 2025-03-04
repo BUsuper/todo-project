@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, FormGroup, FormControlLabel, Switch, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from '../../features/filters/filtersSlice';
 import { selectDate, selectFilter } from '../../features/filters/filtersSelectors';
@@ -58,6 +58,41 @@ export function FiltersDetails() {
                 >
                     {activeFilter === "" ? "All" : "Remove filters"}
                 </Button>
+                <FormGroup>
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={activeFilter === ""}
+                                onChange={() => handleFilterSelection("")}
+                            />
+                            } label="All"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={activeFilter === "today"}
+                                onChange={() => handleFilterSelection("today")}
+                            />
+                            } label="Due today"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={activeFilter === "selected date"}
+                                onChange={() => handleFilterSelection("selected date")}
+                                disabled={Boolean(!selectedDate)}
+                            />
+                            } label="Due on selected date"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={activeFilter === "overdue"}
+                                onChange={() => handleFilterSelection("overdue")}
+                            />
+                            } label="Overdue"
+                    />
+                </FormGroup>
             </Box>
         </Box>
     );
