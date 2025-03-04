@@ -2,11 +2,9 @@ import { Box, Button, TextField } from "@mui/material";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-import { handleUserInput } from "../../handlers/handleUserInput";
-import { addTodo } from "../../features/todosSlice";
+import { addTodo } from "../../features/todos/todosSlice";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb';
 
 export function TodoForm() {
@@ -39,7 +37,6 @@ export function TodoForm() {
         setDateInput(null);
     }
 
-    // Using a closure to pass additonal parameters to handleUserInput
     return (
         <Box 
             component="form"
@@ -55,7 +52,7 @@ export function TodoForm() {
                 value={todoInput}
                 required
                 sx={{width: "80%", margin: "7.5px auto"}}
-                onChange={e => handleUserInput(e, setTodoInput)}>
+                onChange={e => setTodoInput(e.target.value)}>
             </TextField>
             <TextField
                 id="notesInputField"
@@ -64,7 +61,7 @@ export function TodoForm() {
                 variant="outlined"
                 value={notesInput}
                 sx={{width: "80%", margin: "7.5px auto"}}
-                onChange={e => handleUserInput(e, setNotesInput)}>
+                onChange={e => setNotesInput(e.target.value)}>
             </TextField>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                 <DatePicker 

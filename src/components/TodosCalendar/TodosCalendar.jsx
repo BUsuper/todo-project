@@ -1,9 +1,9 @@
 import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useDispatch, useSelector } from "react-redux";
-import { setDate } from "../../features/filtersSlice";
+import { setDate } from "../../features/filters/filtersSlice";
 import { CalendarDay } from '../../components';
-import { makeSelectTodos } from '../../features/todosSlice';
+import { makeSelectTodos } from '../../features/todos/todosSelectors';
 
 
 export function TodosCalendar() {

@@ -1,8 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleUserInput } from "../../handlers/handleUserInput";
-import { selectTodo, updateTodo } from "../../features/todosSlice";
+import { updateTodo } from "../../features/todos/todosSlice";
+import { selectTodo } from "../../features/todos/todosSelectors";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
@@ -56,7 +56,7 @@ export function TodoDetails({ id }) {
                 slotProps={{readOnly: true}}
                 disabled={!isEditingActive}
                 value={taskText}
-                onChange={(e) => handleUserInput(e, setTodoText)}
+                onChange={(e) => setTodoText(e.target.value)}
                 id={`taskText${id}`} 
                 name={`taskText${id}`}
                 label="Todo"
@@ -67,7 +67,7 @@ export function TodoDetails({ id }) {
                 disabled={!isEditingActive} 
                 value={notesText}
                 multiline
-                onChange={(e) => handleUserInput(e, setNotesText)} 
+                onChange={(e) => setNotesText(e.target.value)} 
                 id={`notesText${id}`}
                 name={`notesText${id}`} 
                 label="Notes"

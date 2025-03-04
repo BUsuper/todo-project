@@ -2,7 +2,9 @@ import { Box, Checkbox, IconButton, ListItem, Typography } from '@mui/material/'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTodo, deleteTodo, selectTodo } from '../../features/todosSlice';
+import { toggleTodo, deleteTodo } from '../../features/todos/todosSlice';
+import { selectTodo } from '../../features/todos/todosSelectors';
+import { TodoItemContainer } from '../../components';
 import { TodoDetails } from '../../components';
 
 export function TodoItem({ id, overdue }) {
@@ -29,7 +31,7 @@ export function TodoItem({ id, overdue }) {
 
     const todo = useSelector(selectTodo(id));
     return (
-        <Box sx={{border: "solid 1px", borderColor: "divider", borderRadius:"5px", width:"80%", margin:"15px auto"}}>
+        <TodoItemContainer>
             <ListItem
                 id={todo.id}
                 onClick={handleTodoDetailsVisibility}
@@ -45,9 +47,12 @@ export function TodoItem({ id, overdue }) {
                         sx={{
                             flexGrow:1,
                             paddingLeft:"10px",
+                            cursor:"pointer",
+                            userSelect:"none",
+                            textDecoration: todo.completed ? "line-through" : "none",
                         }}
                     >
-                        {todo.completed ? <s>{todo.task}</s> : todo.task}
+                        {todo.task}
                     </Typography>
                     <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
                         <DeleteIcon/>
@@ -57,5 +62,5 @@ export function TodoItem({ id, overdue }) {
             <Box>
                 {isTodoDetailsVisible && <TodoDetails id={todo.id}></TodoDetails>}
             </Box>
-        </Box>);
+        </TodoItemContainer>);
 }
