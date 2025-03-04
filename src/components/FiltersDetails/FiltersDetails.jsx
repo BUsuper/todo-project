@@ -1,4 +1,4 @@
-import { Box, Button, FormGroup, FormControlLabel, Switch, Typography } from '@mui/material';
+import { Box, FormGroup, FormControlLabel, Switch, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from '../../features/filters/filtersSlice';
 import { selectDate, selectFilter } from '../../features/filters/filtersSelectors';
