@@ -62,6 +62,7 @@ export function FiltersDetails() {
                     <FormControlLabel
                         control={
                             <Switch
+                                id="allSwitch"
                                 checked={activeFilter === ""}
                                 onChange={() => handleFilterSelection("")}
                             />
@@ -70,6 +71,7 @@ export function FiltersDetails() {
                     <FormControlLabel
                         control={
                             <Switch
+                                id="todaySwitch"
                                 checked={activeFilter === "today"}
                                 onChange={() => handleFilterSelection("today")}
                             />
@@ -78,6 +80,7 @@ export function FiltersDetails() {
                     <FormControlLabel
                         control={
                             <Switch
+                                id="selectedDaySwitch"
                                 checked={activeFilter === "selected date"}
                                 onChange={() => handleFilterSelection("selected date")}
                                 disabled={Boolean(!selectedDate)}
@@ -87,6 +90,7 @@ export function FiltersDetails() {
                     <FormControlLabel
                         control={
                             <Switch
+                                id="overdueSwitch"
                                 checked={activeFilter === "overdue"}
                                 onChange={() => handleFilterSelection("overdue")}
                             />
