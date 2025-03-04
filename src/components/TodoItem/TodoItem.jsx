@@ -49,9 +49,10 @@ export function TodoItem({ id, overdue }) {
                             paddingLeft:"10px",
                             cursor:"pointer",
                             userSelect:"none",
+                            textDecoration: todo.completed ? "line-through" : "none",
                         }}
                     >
-                        {todo.completed ? <s>{todo.task}</s> : todo.task}
+                        {todo.task}
                     </Typography>
                     <IconButton onClick={(e) => handleDeletion(e, todo.id)}>
                         <DeleteIcon/>
