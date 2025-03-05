@@ -86,9 +86,6 @@ export function TodoDetails({ id }) {
                 </DatePicker>
             </LocalizationProvider>
         </Box>
-        {/* This works like shit: if the date is already picked and you remove it,
-        and you want to set the same date again, you have to click on another date
-        then click on the old one */}
         <Box>
             {date ?
             <Button onClick={() => setDate(undefined)} id={`deadlineButton${id}`} disabled={!isEditingActive} variant="outlined">Delete deadline</Button> :
