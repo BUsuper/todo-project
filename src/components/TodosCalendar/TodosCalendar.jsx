@@ -13,7 +13,6 @@ export function TodosCalendar() {
         dispatch(setDate(`${date.year()}-${date.month() + 1}-${date.date()}`));
     }
 
-    //const daysWithTodos = ['2025-2-14', '2025-2-19', '2025-2-3', '2025-3-1'];
     const selectTodos = makeSelectTodos(false);
     const todos = useSelector(selectTodos);
     const daysWithTodos = new Set(todos.map(todo => todo.date));
