@@ -25,7 +25,7 @@ export function TodoForm() {
             task: todo,
             notes,
             completed: false,
-            date: `${date.year()}-${date.month() + 1}-${date.date()}`
+            date: date ? `${date.year()}-${date.month() + 1}-${date.date()}` : null,
         }
 
         // Adding the object to the Redux state

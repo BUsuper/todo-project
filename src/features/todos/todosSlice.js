@@ -34,7 +34,7 @@ Todo entry structure:
     task,      - the main text of the task, necessary to create it (string)
     completed, - shows whether the task is completed or not (boolean)
     notes,     - another text field, a longer description of the task, empty by default (string)
-    date,      - contains the todo's deadline (string) - OPTIONAL
+    date,      - contains the todo's deadline (string) - OPTIONAL, null if not chosen
 }
 */
 
